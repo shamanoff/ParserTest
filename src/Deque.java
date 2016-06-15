@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class Deque {
 
     int[] deque;
@@ -21,11 +23,28 @@ public class Deque {
     public boolean isFull() {
         return (numItem == maxSize);
     }
-        public void insertLeft(int value) {
+
+
+     public void insertLeft(int value) {
             if(!isFull()){
-        deque[left] = value;}
+        deque[left] = value;
+            }else System.out.println("is full - " + value + " not added");
+         numItem++;
+         left++;
     }
 
+    public void insertRight(int value) {
+        if(!isFull()){
+            deque[right] = value;
+        }else System.out.println("is full - " + value + " not added");
+        numItem++;
+        right--;
+    }
 
-
+    @Override
+    public String toString() {
+        return "Deque{" +
+                "deque=" + Arrays.toString(deque) +
+                '}';
+    }
 }
