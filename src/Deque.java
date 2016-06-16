@@ -23,6 +23,9 @@ public class Deque {
     public boolean isFull() {
         return (numItem == maxSize);
     }
+    public boolean isEmpty() {
+        return (numItem == 0);
+    }
 
 
      public void insertLeft(int value) {
@@ -40,11 +43,51 @@ public class Deque {
         numItem++;
         right--;
     }
+//
+    public String removeLeft(int value) {
+
+        int[] leftInt = new int[value];
+        for (int i = 0; i < value; i++) {
+
+
+        if(!isEmpty()){
+            leftInt[i] = deque[left];
+            deque[left] = 0;
+
+        }else System.out.println("is empty");
+        numItem--;
+        left--;
+        }
+        String outLeft = Arrays.toString(leftInt) ;
+        return outLeft;
+
+    }
+
+
+
+
+
+/*    public void removeLeft(int value) {
+
+
+        for (int i = 0; i <value ; i++) {
+
+
+            int leftInt=0;
+            if(!isEmpty()){
+            leftInt = deque[left];
+                deque[left] = 0;
+            }else System.out.println("is empty");
+            numItem--;
+            left--;
+        }
+
+
+    }*/
 
     @Override
     public String toString() {
-        return "Deque{" +
-                "deque=" + Arrays.toString(deque) +
-                '}';
+        return "Deque " +
+                 Arrays.toString(deque) ;
     }
 }
