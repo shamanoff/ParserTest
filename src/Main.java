@@ -15,8 +15,12 @@ public class Main {
 
         System.out.println(deque.toString());
 
-        deque.removeLeft(5);
+
+
+        System.out.println("removed from array " + deque.removeLeft(4));
+
         System.out.println(deque.toString());
+
 
 
 
