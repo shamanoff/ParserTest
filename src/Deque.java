@@ -15,7 +15,7 @@ public class Deque {
 
         deque = new int[maxSize];
         left = 0;
-        right = maxSize-1;
+        right = 0;
 
         numItem = 0;
 
@@ -27,64 +27,67 @@ public class Deque {
         return (numItem == 0);
     }
 
+    public void insertLeft(int value) {
+        if (numItem == 0) {
+            deque[left] = value;
+            numItem++;
+        } else {
+            if(isFull()){
+                System.out.println("is full ");return;}
 
-     public void insertLeft(int value) {
-            if(!isFull()){
-        deque[left] = value;
-            }else System.out.println("is full - " + value + " not added");
-         numItem++;
-         left++;
+                for (int i = right; i > -1; i--) {
+                    deque[i + 1] = deque[i];
+                }
+                deque[left] = value;
+                right++;
+                numItem++;
+
+        }
     }
+
 
     public void insertRight(int value) {
+        if (isEmpty()) {
+            deque[right]=value;
+            numItem++;
+            return;
+        }
         if(!isFull()){
-            deque[right] = value;
-        }else System.out.println("is full - " + value + " not added");
-        numItem++;
-        right--;
+            deque[right+1]=value;
+            right++;
+            numItem++;
+
+        }
     }
-//
-    public String removeLeft(int value) {
 
-        int[] leftInt = new int[value];
-        for (int i = 0; i < value; i++) {
-
-
-        if(!isEmpty()){
-            leftInt[i] = deque[left];
-            deque[left] = 0;
-
-        }else System.out.println("is empty");
+    public int removeLeft (){
+        if(isEmpty()){
+            System.out.println("is empty ");
+            return Integer.MIN_VALUE;
+        }
+        int temp = deque[left];
         numItem--;
-        left--;
+        if(!isEmpty()){
+            for (int i = 1; i < right+1; i++) {
+                deque[i - 1] = deque[i];
+            }
+            right--;
         }
-        String outLeft = Arrays.toString(leftInt) ;
-        return outLeft;
+        return temp;
+    }
 
+    public int removeRight() {
+        if(isEmpty()){
+            System.out.println("is empty ");
+            return Integer.MIN_VALUE;
+        }
+        int temp = deque[right];
+        numItem--;
+        if(!isEmpty()){right--;}
+        return temp;
     }
 
 
-
-
-
-
-/*    public void removeLeft(int value) {
-
-
-        for (int i = 0; i <value ; i++) {
-
-
-            int leftInt=0;
-            if(!isEmpty()){
-            leftInt = deque[left];
-                deque[left] = 0;
-            }else System.out.println("is empty");
-            numItem--;
-            left--;
-        }
-
-
-    }*/
 
     @Override
     public String toString() {
